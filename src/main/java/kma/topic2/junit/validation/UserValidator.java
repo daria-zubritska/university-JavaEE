@@ -17,6 +17,10 @@ public class UserValidator {
 
     private final UserRepository userRepository;
 
+    public UserValidator(){
+        userRepository = new UserRepository();
+    }
+
     public void validateNewUser(final NewUser newUser) {
         if (userRepository.isLoginExists(newUser.getLogin())) {
             throw new LoginExistsException(newUser.getLogin());

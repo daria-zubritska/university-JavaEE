@@ -1,5 +1,7 @@
 package kma.topic2.junit.service;
 
+import kma.topic2.junit.exceptions.ConstraintViolationException;
+import kma.topic2.junit.exceptions.LoginExistsException;
 import org.springframework.stereotype.Service;
 
 import kma.topic2.junit.model.NewUser;
@@ -19,7 +21,13 @@ public class UserService {
 
     public void createNewUser(final NewUser newUser) {
         log.info("Try to create new user: {}", newUser.getLogin());
-        userValidator.validateNewUser(newUser);
+        try {
+            userValidator.validateNewUser(newUser);
+        }catch(LoginExistsException e){
+            throw new LoginExistsException(e.getMessage());
+        }catch(ConstraintViolationException e){
+            throw new ConstraintViolationException(e.getErrors());
+        }
         final User user = userRepository.saveNewUser(newUser);
         log.info("New user is created: {}", user);
     }
