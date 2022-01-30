@@ -40,13 +40,4 @@ public class UserServiceTest {
         Mockito.verify(userValidator).validateNewUser(ArgumentMatchers.any());
     }
 
-    @ParameterizedTest
-    @ValueSource(strings = {"login4", "login5", "login6"})
-    void testNewUserWith(String login) {
-        userService.createNewUser(NewUser.of(login, "passw", "fullname"));
-
-        org.junit.jupiter.api.Assertions.assertEquals(
-                User.of(login, "passw", "fullname"), userService.getUserByLogin(login));
-    }
-
 }

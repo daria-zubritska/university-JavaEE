@@ -3,7 +3,6 @@ import kma.topic2.junit.exceptions.LoginExistsException;
 import kma.topic2.junit.model.NewUser;
 import kma.topic2.junit.repository.UserRepository;
 import kma.topic2.junit.validation.UserValidator;
-import net.bytebuddy.asm.Advice;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
